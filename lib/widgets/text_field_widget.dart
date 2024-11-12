@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String? hint;
-  Function(String)? onChanged;
-  int? maxLines;
+  final Function(String)? onChanged;
+  final int? maxLines;
 
-  TextFieldWidget({
+  const TextFieldWidget({
     super.key,
     required this.hint,
     required this.onChanged,

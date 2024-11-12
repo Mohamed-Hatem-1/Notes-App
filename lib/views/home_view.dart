@@ -21,13 +21,18 @@ class HomeView extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.search),
-            // autofocus: true,
             style: ButtonStyle(
               shape: WidgetStateProperty.all(
                 const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
               ),
             ),
+          ),
+          SizedBox(
+            width: 5,
           ),
         ],
       ),
@@ -42,11 +47,12 @@ class HomeView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            // backgroundColor: ,
-              context: context, builder: (context) => const AddNoteWidget());
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              // backgroundColor: ,
+              context: context,
+              builder: (context) => const AddNoteWidget());
         },
         child: const Icon(Icons.add),
         shape: CircleBorder(),
