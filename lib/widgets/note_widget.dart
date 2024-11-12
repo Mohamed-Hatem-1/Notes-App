@@ -26,7 +26,7 @@ class NoteWidget extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              'this is a lot of information this is a lot of information this is a lot of information this is a lot of information this is a lot of information this is a lot of information this is a lot of information this is a lot of information this is a lot of information ',
+              'this is a lot of information this is a lot of information this is a lot of information this is a lot of information this is a lot of information this is a lot of information this is a lot of information ',
               style: TextStyle(
                 color: Colors.black.withOpacity(.5),
               ),
@@ -36,7 +36,9 @@ class NoteWidget extends StatelessWidget {
               icon: Icon(
                 FontAwesomeIcons.trash,
               ),
-              onPressed: () {},
+              onPressed: () {
+                // delete note
+              },
             ),
             iconColor: Colors.black,
           ),

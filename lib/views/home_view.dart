@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/widgets/add_note_widget.dart';
 import 'package:notes_app/widgets/note_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -39,7 +40,14 @@ class HomeView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            // backgroundColor: ,
+              context: context, builder: (context) => const AddNoteWidget());
+        },
         child: const Icon(Icons.add),
         shape: CircleBorder(),
       ),
