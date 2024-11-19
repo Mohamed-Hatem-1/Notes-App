@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 
-class TextFieldWidget extends StatelessWidget {
+class TextFormFieldWidget extends StatelessWidget {
   final String? hint;
-  final Function(String)? onChanged;
+  final void Function(String?)? onSaved;
+  final void Function(String?)? onChanged;
   final int? maxLines;
 
-  const TextFieldWidget({
+  const TextFormFieldWidget({
     super.key,
     required this.hint,
-    required this.onChanged,
+    this.onSaved,
     this.maxLines,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      maxLines: maxLines == null ? 1 : maxLines,
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter some text';
+        }
+        return null;
+      },
+      onSaved: onSaved,
       onChanged: onChanged,
+      maxLines: maxLines == null ? 1 : maxLines,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: TextStyle(

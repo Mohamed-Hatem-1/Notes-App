@@ -2,15 +2,29 @@ import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String text;
-  const ButtonWidget({super.key, required this.text});
+  final VoidCallback onPressed;
+  final bool isLoading;
+  const ButtonWidget(
+      {super.key,
+      required this.text,
+      required this.onPressed,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: TextButton(
-        onPressed: () {},
-        child: Text(text),
+        onPressed: onPressed,
+        child: isLoading
+            ? SizedBox(
+                height: 25,
+                width: 25,
+                child: CircularProgressIndicator(
+                  color: Colors.black,
+                ),
+              )
+            : Text(text),
         style: ButtonStyle(
           padding: MaterialStateProperty.all(
             EdgeInsets.symmetric(

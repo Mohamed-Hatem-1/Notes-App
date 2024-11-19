@@ -1,38 +1,41 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:notes_app/widgets/button_widget.dart';
-import 'package:notes_app/widgets/text_field_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/cubits/show_notes_cubit/show_notes_cubit.dart';
+import 'package:notes_app/widgets/add_note_form_state_widget.dart';
 
 class AddNoteWidget extends StatelessWidget {
   const AddNoteWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            TextFieldWidget(
-              hint: 'Title',
-              onChanged: (value) {},
+    return BlocProvider(
+      create: (context) => AddNoteCubit(),
+      child: BlocConsumer<AddNoteCubit, AddNoteState>(
+        listener: (context, state) {
+          if (state is AddNoteSuccess) {
+            BlocProvider.of<ShowNotesCubit>(context).fetchNotes();
+            Navigator.of(context).pop();
+          }
+          if (state is AddNoteFailure) {
+            log(state.errMessage);
+          }
+        },
+        builder: (context, state) {
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoading ? true : false,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 20),
+              child: AddNoteFormStateWidget(),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFieldWidget(
-              hint: 'Description',
-              maxLines: 5,
-              onChanged: (value) {},
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ButtonWidget(text: 'Add'),
-            SizedBox(
-              height: 10,
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
