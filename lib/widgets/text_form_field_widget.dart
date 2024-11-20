@@ -5,6 +5,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final void Function(String?)? onSaved;
   final void Function(String?)? onChanged;
   final int? maxLines;
+  final String? Function(String?)? validator;
 
   const TextFormFieldWidget({
     super.key,
@@ -12,20 +13,22 @@ class TextFormFieldWidget extends StatelessWidget {
     this.onSaved,
     this.maxLines,
     this.onChanged,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter some text';
-        }
-        return null;
-      },
+      validator: validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
       onSaved: onSaved,
       onChanged: onChanged,
-      maxLines: maxLines ?? maxLines,
+      maxLines: maxLines == null ? 1 : 5,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: const TextStyle(
@@ -34,6 +37,7 @@ class TextFormFieldWidget extends StatelessWidget {
         enabledBorder: border(),
         focusedBorder: border(),
         errorBorder: border(color: Colors.red),
+        focusedErrorBorder: border(color: Colors.red),
       ),
     );
   }

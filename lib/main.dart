@@ -9,7 +9,7 @@ import 'package:notes_app/views/home_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());

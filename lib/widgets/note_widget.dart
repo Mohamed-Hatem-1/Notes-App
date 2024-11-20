@@ -46,8 +46,7 @@ class NoteWidget extends StatelessWidget {
                   FontAwesomeIcons.trash,
                 ),
                 onPressed: () {
-                  noteModel.delete();
-                  BlocProvider.of<ShowNotesCubit>(context).fetchNotes();
+                  _showDeleteConfirmationDialog(context);
                 },
               ),
               iconColor: Colors.black,
@@ -61,6 +60,34 @@ class NoteWidget extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showDeleteConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Deletion'),
+          content: const Text('Are you sure you want to delete this note?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                noteModel.delete();
+                BlocProvider.of<ShowNotesCubit>(context).fetchNotes();
+                Navigator.of(context).pop();
+              },
+              child: const Text('Delete'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
