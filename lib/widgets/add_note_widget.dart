@@ -32,7 +32,7 @@ class AddNoteWidget extends StatelessWidget {
                   left: 20,
                   right: 20,
                   bottom: MediaQuery.of(context).viewInsets.bottom + 20),
-              child: AddNoteFormStateWidget(),
+              child: const AddNoteFormStateWidget(),
             ),
           );
         },

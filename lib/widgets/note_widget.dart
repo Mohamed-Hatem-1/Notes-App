@@ -13,7 +13,8 @@ class NoteWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, EditNoteView.routeName, arguments: noteModel);
+        Navigator.pushNamed(context, EditNoteView.routeName,
+            arguments: noteModel);
       },
       child: Container(
         padding: const EdgeInsets.all(18),
@@ -25,10 +26,10 @@ class NoteWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              contentPadding: EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.all(0),
               title: Text(
                 noteModel.title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   color: Colors.black,
                 ),
@@ -41,7 +42,7 @@ class NoteWidget extends StatelessWidget {
               ),
               trailing: IconButton(
                 iconSize: 28,
-                icon: Icon(
+                icon: const Icon(
                   FontAwesomeIcons.trash,
                 ),
                 onPressed: () {

@@ -25,24 +25,24 @@ class TextFormFieldWidget extends StatelessWidget {
       },
       onSaved: onSaved,
       onChanged: onChanged,
-      maxLines: maxLines == null ? 1 : maxLines,
+      maxLines: maxLines ?? maxLines,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           color: Color(0xff53EBD6),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-        ),
+        enabledBorder: border(),
+        focusedBorder: border(),
+        errorBorder: border(color: Colors.red),
+      ),
+    );
+  }
+
+  OutlineInputBorder border({Color color = Colors.white}) {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(
+        color: color,
       ),
     );
   }
