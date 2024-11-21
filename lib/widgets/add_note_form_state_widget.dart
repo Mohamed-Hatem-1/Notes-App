@@ -62,7 +62,7 @@ class _AddNoteFormStateWidgetState extends State<AddNoteFormStateWidget> {
                       _formKey.currentState!.save();
                       var date = DateTime.now();
                       var formattedDate =
-                          DateFormat.yMd().add_jm().format(date);
+                          DateFormat('dd/MM/yyyy').add_jm().format(date);
                       var note = NoteModel(
                         title: title!,
                         content: desc!,
